@@ -42,4 +42,4 @@ outputs:
     description: 'The URL of the newly created Turso DB Branch.'
 runs:
   using: 'node20'
-  main: 'create-turso-db-branch.cjs'
+  main: 'create-turso-db-branch.mjs'
