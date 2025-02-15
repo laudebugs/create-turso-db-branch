@@ -1,0 +1,42 @@
+name: 'Create Turso Database Branch'
+description: 'Creates a Turso database Branch'
+inputs:
+  org:
+    description: 'This is the username for personal accounts or the organization slug for organization accounts'
+    required: true
+  api-token:
+    description: "A Turso Platform API token for authentication and authorization when interacting with Turso's Platform API."
+    required: true
+  branch-name:
+    description: 'Name of the Turso DB Branch Name. The branch name may only contain numbers, lowercase letters, and dashes.'
+    required: true
+  seed-database-name: 
+    description: 'The database from which the branch will be created from. Data from this database will be seeded to the newly created database.'
+    required: true
+  overwrite-if-exists: 
+    description: 'Overwrite the branch if it already exists.'
+    required: false
+    default: 'false'
+  group:
+    description: 'This is the username for personal accounts or the organization slug for organization accounts'
+    required: true
+  create-auth-token: 
+    description: 'Create an authentication token for the newly created branch.'
+    required: false
+    default: 'false'
+  auth-token-authorization: 
+    description: 'The authorization level for the authentication token. The authorization level determines the permissions the token has.'
+    required: false
+    default: 'read-only'
+  auth-token-expiration: 
+    description: 'The expiration time for the authentication token. The token will expire after the specified time.'
+    required: false
+    default: '1d'
+outputs:
+  db-branch-hostname: 
+    description: 'The host name of the newly created Turso DB Branch.'
+  db-branch-url:
+    description: 'The URL of the newly created Turso DB Branch.'
+runs:
+  using: 'node20'
+  main: 'create-turso-db-branch.cjs'
