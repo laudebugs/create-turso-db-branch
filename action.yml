@@ -1,5 +1,8 @@
 name: 'Create Turso Database Branch'
 description: 'Creates a Turso database Branch'
+branding:
+  icon: 'database'
+  color: 'blue'
 inputs:
   org:
     description: 'This is the username for personal accounts or the organization slug for organization accounts'

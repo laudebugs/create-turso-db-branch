@@ -15,10 +15,10 @@ Read more on installing and using the [Turso CLI here](https://docs.turso.tech/c
 | [`org`](#api-token---turso-platform-api-token)                                                 | Turso Org Slug                            | Yes      |             |
 | [`api-token`](#api-token---turso-platform-api-token)                                           | Turso Platform API Token                  | Yes      |             |
 | [`branch-name`](#branch-name---name-of-the-branch-to-be-created)                               | Name of the branch to be created          | Yes      |             |
-| [`overwrite-if-exists`](#overwrite-if-exists---overwrite-the-branch-if-it-already-exists)      | Overwrite the branch if it already exists | No       | false       |
+| [`overwrite-if-exists`](#overwrite-if-exists---overwrite-the-branch-if-it-already-exists)      | Overwrite the branch if it already exists | No       | `false`     |
 | [`seed-database-name`](#seed-database-name---seed-database-name)                               | Name of the branch to be branched from    | Yes      |             |
 | [`group`](#group---turso-database-group)                                                       | Turso Database Group                      | Yes      |             |
-| [`create-auth-token`](#create-auth-token---create-an-auth-token-for-the-new-branch)            | Create an auth token for the new branch   | No       | false       |
+| [`create-auth-token`](#create-auth-token---create-an-auth-token-for-the-new-branch)            | Create an auth token for the new branch   | No       | `false`     |
 | [`auth-token-authorization`](#auth-token-authorization---authorization-for-the-new-auth-token) | Authorization for the new auth token      | No       | `read-only` |
 | [`auth-token-expiration`](#auth-token-expiration---expiry-for-the-new-auth-token)              | Expiry for the new auth token             | No       | `1d`        |
 
@@ -75,3 +75,11 @@ This input is only used if `create-auth-token` is set to `true`. This input spec
 Examples: `1d`, `1w`, `1m`, `1y`, `2w1d30m`
 
 > Note: You should also avoid exposing this token by logging it.
+
+
+## Action Outputs 
+### `db-branch-hostname` 
+The hostname of the new branch created.
+
+### `db-branch-url`
+The URL of the new branch created.
