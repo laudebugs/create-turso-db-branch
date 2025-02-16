@@ -6,7 +6,8 @@
 Branches can be useful for development, testing, and staging environments. This GitHub Action creates a new branch in a Turso database.
 Read more on [Turso Database Branches here](https://docs.turso.tech/features/branching#branching)
 
-> Note: The Turso docs provide steps to do this using a GitHub Action using `curl`. This GitHub Action is a wrapper around the same steps using the Turso Database API [JavaScript library](https://www.npmjs.com/package/@tursodatabase/api).
+> [!TIP]
+> The Turso docs provide steps to do this using a GitHub Action using `curl`. This GitHub Action is a wrapper around the same steps using the Turso Database API [JavaScript library](https://www.npmjs.com/package/@tursodatabase/api).
 
 You can get your Turso Details using the WebUI or using the Turso CLI.
 Read more on installing and using the [Turso CLI here](https://docs.turso.tech/cli/introduction)
@@ -86,7 +87,8 @@ turso org list
 
 You can either create a new Platform API token on the Turso Web UI or use the [turso cli](https://docs.turso.tech/cli/auth/api-tokens/mint).
 
-> Note: The token is a secret and should be kept confidential. Do not share it with anyone or expose it in public repositories.
+> [!NOTE] 
+>   The token is a secret and should be kept confidential. Do not share it with anyone or expose it in public repositories.
 > You can pass this token as a secret in your GitHub repository. Read more on how to add secrets to your GitHub repository [here](https://docs.github.com/en/actions/reference/encrypted-secrets).
 
 #### `branch-name` - Name of the branch to be created
@@ -124,11 +126,10 @@ This input is only used if `create-auth-token` is set to `true`. This input spec
 This input is only used if `create-auth-token` is set to `true`. This input specifies the expiry for the new auth token. The expiry can be in the format `1d` for 1 day, `1w` for 1 week, `1m` for 1 month, or `1y` for 1 year.
 Examples: `1d`, `1w`, `1m`, `1y`, `2w1d30m`
 
-> Note: You should also avoid exposing this token by logging it.
 
-
-## Action Outputs 
-> Note: All the outputs are masked and are not intended to be printed in the logs. You can use these outputs in subsequent steps in the workflow. 
+## Action Outputs
+> [!NOTE]  
+> All the outputs are masked and are not intended to be printed in the logs. You can use these outputs in subsequent steps in the workflow. 
 
 ### `db_branch_hostname` 
 The hostname of the new branch created.
