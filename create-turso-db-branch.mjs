@@ -4,7 +4,7 @@ import { getInput, setOutput, setFailed, setSecret, getBooleanInput, warning, er
 const org = getInput('org')
 const token = getInput('api-token')
 const dbBranchName = getInput('branch-name')
-const seedDbName = getInput('seed-db-name')
+const seedDbName = getInput('seed-database-name')
 const group = getInput('group')
 const overWriteIfExists = getBooleanInput('overwrite-if-exists')
 
