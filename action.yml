@@ -36,10 +36,14 @@ inputs:
     required: false
     default: '1d'
 outputs:
-  db-branch-hostname: 
+  db_branch_hostname: 
     description: 'The host name of the newly created Turso DB Branch.'
-  db-branch-url:
-    description: 'The URL of the newly created Turso DB Branch.'
+  db_branch_libsql_url:
+    description: 'The Libsql Url of the newly created Turso DB Branch.'
+  db_branch_http_url:
+    description: 'The Http URL of the newly created Turso DB Branch.'
+  db_jwt_auth_token:
+    description: 'The authentication token for the newly created Turso DB Branch.'
 runs:
   using: 'node20'
   main: 'create-turso-db-branch.mjs'

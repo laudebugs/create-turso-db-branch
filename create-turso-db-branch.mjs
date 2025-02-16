@@ -57,8 +57,10 @@ async function createDatabaseBranch() {
     }
 
     /** Pass the database host name to the output */
-    setOutput('db-branch-url', `libsql://${database.hostname}`)
-    setOutput('db-branch-hostname', database.hostname)
+    setSecret(database.hostname)
+    setOutput('db_branch_libsql_url', `libsql://${database.hostname}`)
+    setOutput('db_branch_http_url', `https://${database.hostname}`)
+    setOutput('db_branch_hostname', database.hostname)
 
     /**
      * If the createAuthToken option is set to true, create a token for the database
@@ -76,9 +78,10 @@ async function createDatabaseBranch() {
             setFailed('Unable to create auth token')
         }
 
+        /** Set the auth token as a secret */
+        setSecret(jwtToken.jwt)
         /** Return auth token details */
-        setOutput('jwt-token', jwtToken.jwt)
-        setSecret('jwt-token')
+        setOutput('db_jwt_auth_token', jwtToken.jwt)
     }
 }
 

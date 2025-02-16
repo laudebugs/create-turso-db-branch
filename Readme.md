@@ -8,6 +8,52 @@ Read more on [Turso Database Branches here](https://docs.turso.tech/features/bra
 You can get your Turso Details using the WebUI or using the Turso CLI.
 Read more on installing and using the [Turso CLI here](https://docs.turso.tech/cli/introduction)
 
+### Usage
+
+```yaml # .github/workflows/create-branch.yml
+name: Create a Turso Database Branch
+# The trigger can be changed to any event that you want to trigger the action.
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+    deploy_database:
+        name: Build and Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the repository
+              uses: actions/checkout@v2
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22.x'
+            - name: Create a Turso Database Branch
+              id: create_turso_db_branch
+              uses: laudebugs/create-turso-db-branch@v0.0.1-alpha
+              with:
+                  org: ${{ secrets.TURSO_ORG }} # Your Turso Org Slug
+                  api-token: ${{ secrets.TURSO_API_TOKEN }} # Your Turso Platform API Token
+                  branch-name: 'new-branch'
+                  seed-database-name: 'seed-database' # The name of the seed database
+                  group: 'group-name' # The name of the group where the seed database is created in Turso
+                  # Optional Inputs
+                  overwrite-if-exists: false # Whether or not to overwrite the branch if it already exists
+                  create-auth-token: true # Whether or not to create an auth token for the new branch
+                  auth-token-authorization: 'read-only' 
+                  auth-token-expiration: '1d'
+              # Example usage
+            - name: Build and Deploy with against the new Database Branch
+              run: |
+                  npm run build
+              env: 
+                  # Using these outputs is up your usecase  
+                  DB_BRANCH_LIBSQL_URL: ${{ steps.create_turso_db_branch.outputs.db_branch_libsql_url }}
+                  DB_BRANCH_HTTP_URL: ${{ steps.create_turso_db_branch.outputs.db_branch_http_url }}
+                  DB_BRANCH_HOSTNAME: ${{ steps.create_turso_db_branch.outputs.db_branch_hostname }}
+                  DB_AUTH_TOKEN: ${{ steps.create_turso_db_branch.outputs.db_jwt_auth_token }}
+```
+
 ## Action Inputs
 
 | Input                                                                                          | Description                               | Required | Default     |
@@ -67,7 +113,7 @@ If this is set to `true`, the action will create an auth token for the new branc
 
 #### `auth-token-authorization` - Authorization for the new auth token
 
-This input is only used if `create-auth-token` is set to `true`. This input specifies the permissions for the new auth token. The permissions can be `read-only` or `read-write`.
+This input is only used if `create-auth-token` is set to `true`. This input specifies the permissions for the new auth token. The permissions can be `read-only` or `read-write`. [Read more on Turso Auth Tokens here](https://docs.turso.tech/sdk/authentication#auth-tokens)
 
 #### `auth-token-expiration` - Expiry for the new auth token
 
@@ -78,8 +124,20 @@ Examples: `1d`, `1w`, `1m`, `1y`, `2w1d30m`
 
 
 ## Action Outputs 
-### `db-branch-hostname` 
-The hostname of the new branch created.
+> Note: All the outputs are masked and are not intended to be printed in the logs. You can use these outputs in subsequent steps in the workflow. 
 
-### `db-branch-url`
+### `db_branch_hostname` 
+The hostname of the new branch created.
+The format of the hostname is: `[DB-NAME]-[ORG-NAME].turso.io` where `[DB-NAME]` is the name of the branch and `[ORG-NAME]` is the name of the organization.
+
+### `db_branch_libsql_url`
 The URL of the new branch created.
+The format of the [URL is: `libsql://[DB-NAME]-[ORG-NAME].turso.io`](https://docs.turso.tech/sdk/authentication#database-url) where `[DB-NAME]` is the name of the branch and `[ORG-NAME]` is the name of the organization.
+
+### `db_branch_http_url`
+The HTTP URL of the new branch created.
+The format of the URL is: `https://[DB-NAME]-[ORG-NAME].turso.io` where `[DB-NAME]` is the name of the branch and `[ORG-NAME]` is the name of the organization.
+
+### `db_jwt_auth_token`
+The JWT Auth Token created for the new branch.
+You can use this token to access the new branch. Such as running specific actions against the database.
