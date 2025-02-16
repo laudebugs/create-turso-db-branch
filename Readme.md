@@ -32,6 +32,7 @@ jobs:
               with:
                   node-version: '22.x'
             - name: Create a Turso Database Branch
+              # You need to reference the step with an id to use it in later steps
               id: create_turso_db_branch
               uses: laudebugs/create-turso-db-branch@v0.0.1-alpha
               with:
