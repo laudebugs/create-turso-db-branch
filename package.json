@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"build": "esbuild create-turso-db-branch.mjs --bundle --platform=node --sourcemap --outfile=dist/index.js",
+		"build": "esbuild create-turso-db-branch.mjs --bundle --platform=node --sourcemap=inline --outfile=dist/index.js",
 		"format": "prettier --write .",
 		"lint": "eslint . --ext .cjs",
 		"test": "jest"
