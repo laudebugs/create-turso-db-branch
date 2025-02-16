@@ -1,5 +1,8 @@
 # Create a Turso Database Branch GitHub Action
 
+> [!IMPORTANT]
+> This GitHub Action is in current development but welcoming contributions.
+
 Branches can be useful for development, testing, and staging environments. This GitHub Action creates a new branch in a Turso database.
 Read more on [Turso Database Branches here](https://docs.turso.tech/features/branching#branching)
 
