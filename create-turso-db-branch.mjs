@@ -63,9 +63,16 @@ async function createDatabaseBranch() {
     setOutput('db_branch_hostname', database.hostname)
 
     /**
+     * If `create-auth-token` is not set to true but auth token options are passed
+     * Log a warning to the action
+     */
+    if(!createAuthToken && (!!authTokenExpiration || !!authTokenAuthorization)) {
+        warning('Auth token options are set but create-auth-token is set to false')
+    }
+
+    /**
      * If the createAuthToken option is set to true, create a token for the database
      */
-
     if (createAuthToken) {
         if(['read-only', 'full-access'].indexOf(authTokenAuthorization) === -1) {
             setFailed('Authorization must be either read-only or full-access')
