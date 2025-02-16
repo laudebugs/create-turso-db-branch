@@ -20843,15 +20843,15 @@ async function createDatabaseBranch() {
   }
   (0, import_core.setSecret)(database.hostname);
   (0, import_core.setOutput)("db_branch_libsql_url", `libsql://${database.hostname}`);
-  (0, import_core.setOutput)("db_branch_http_url", `https://${database.hostname}`);
+  (0, import_core.setOutput)("db_branch_https_url", `https://${database.hostname}`);
   (0, import_core.setOutput)("db_branch_hostname", database.hostname);
   if (createAuthToken) {
     if (["read-only", "full-access"].indexOf(authTokenAuthorization) === -1) {
       (0, import_core.setFailed)("Authorization must be either read-only or full-access");
     }
     const jwtToken = await turso.databases.createToken(database.name, {
-      expiration: authTokenExpiration,
-      authorization: authTokenAuthorization
+      authorization: authTokenAuthorization,
+      expiration: authTokenExpiration
     });
     if (!jwtToken) {
       (0, import_core.setFailed)("Unable to create auth token");

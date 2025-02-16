@@ -59,7 +59,7 @@ async function createDatabaseBranch() {
     /** Pass the database host name to the output */
     setSecret(database.hostname)
     setOutput('db_branch_libsql_url', `libsql://${database.hostname}`)
-    setOutput('db_branch_http_url', `https://${database.hostname}`)
+    setOutput('db_branch_https_url', `https://${database.hostname}`)
     setOutput('db_branch_hostname', database.hostname)
 
     /**
@@ -71,8 +71,8 @@ async function createDatabaseBranch() {
             setFailed('Authorization must be either read-only or full-access')
         }
         const jwtToken = await turso.databases.createToken(database.name, {
-            expiration: authTokenExpiration,
             authorization: authTokenAuthorization,
+            expiration: authTokenExpiration,
         })
         if (!jwtToken) {
             setFailed('Unable to create auth token')

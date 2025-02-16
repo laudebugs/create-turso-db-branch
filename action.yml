@@ -40,7 +40,7 @@ outputs:
     description: 'The host name of the newly created Turso DB Branch.'
   db_branch_libsql_url:
     description: 'The Libsql Url of the newly created Turso DB Branch.'
-  db_branch_http_url:
+  db_branch_https_url:
     description: 'The Http URL of the newly created Turso DB Branch.'
   db_jwt_auth_token:
     description: 'The authentication token for the newly created Turso DB Branch.'

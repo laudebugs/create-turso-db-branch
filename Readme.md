@@ -49,7 +49,7 @@ jobs:
               env: 
                   # Using these outputs is up your usecase  
                   DB_BRANCH_LIBSQL_URL: ${{ steps.create_turso_db_branch.outputs.db_branch_libsql_url }}
-                  DB_BRANCH_HTTP_URL: ${{ steps.create_turso_db_branch.outputs.db_branch_http_url }}
+                  DB_BRANCH_HTTPS_URL: ${{ steps.create_turso_db_branch.outputs.db_branch_https_url }}
                   DB_BRANCH_HOSTNAME: ${{ steps.create_turso_db_branch.outputs.db_branch_hostname }}
                   DB_AUTH_TOKEN: ${{ steps.create_turso_db_branch.outputs.db_jwt_auth_token }}
 ```
@@ -134,7 +134,7 @@ The format of the hostname is: `[DB-NAME]-[ORG-NAME].turso.io` where `[DB-NAME]`
 The URL of the new branch created.
 The format of the [URL is: `libsql://[DB-NAME]-[ORG-NAME].turso.io`](https://docs.turso.tech/sdk/authentication#database-url) where `[DB-NAME]` is the name of the branch and `[ORG-NAME]` is the name of the organization.
 
-### `db_branch_http_url`
+### `db_branch_https_url`
 The HTTP URL of the new branch created.
 The format of the URL is: `https://[DB-NAME]-[ORG-NAME].turso.io` where `[DB-NAME]` is the name of the branch and `[ORG-NAME]` is the name of the organization.
 
