@@ -129,7 +129,7 @@ Examples: `1d`, `1w`, `1m`, `1y`, `2w1d30m`
 
 ## Action Outputs
 > [!NOTE]  
-> All the [outputs are masked](https://github.com/actions/toolkit/tree/main/packages/core#setting-a-secret) and are not intended to be printed in the logs. You can use these outputs in subsequent steps in the workflow.
+> All the [outputs are masked](https://github.com/actions/toolkit/blob/main/packages/core/README.md#setting-a-secret) and are not intended to be printed in the logs. You can use these outputs in subsequent steps in the workflow.
 
 ### `db_branch_hostname` 
 The hostname of the new branch created.
