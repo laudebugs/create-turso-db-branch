@@ -1,4 +1,10 @@
 {
+	"scripts": {
+		"build": "esbuild create-turso-db-branch.mjs --bundle --platform=node --sourcemap --outfile=dist/index.js",
+		"format": "prettier --write .",
+		"lint": "eslint . --ext .cjs",
+		"test": "jest"
+	},
 	"dependencies": {
 		"@actions/core": "^1.11.1",
 		"@actions/github": "^6.0.0",
@@ -6,6 +12,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^22.13.4",
+		"esbuild": "^0.25.0",
 		"prettier": "^3.5.1"
 	},
 	"prettier": {

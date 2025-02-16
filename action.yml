@@ -46,4 +46,4 @@ outputs:
     description: 'The authentication token for the newly created Turso DB Branch.'
 runs:
   using: 'node20'
-  main: 'create-turso-db-branch.mjs'
+  main: 'dist/index.js'
